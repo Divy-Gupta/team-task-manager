@@ -234,55 +234,27 @@ Deploy 🚀
 
 ---
 
-# 🌐 Frontend Deployment on Railway
+# 🌐 Frontend Deployment on Netlify
 
 ## Step 1
-
-Create another Railway service.
-
----
+Open Netlify and login with GitHub.
 
 ## Step 2
-
-Select same GitHub repo.
-
----
+Click:
+Add New Site → Deploy manually
 
 ## Step 3
-
-Set Root Directory:
-
-```bash
-frontend
-```
-
----
+Upload frontend files:
+- index.html
+- signup.html
+- style.css
+- script.js
 
 ## Step 4
-
-Create a file named:
-
-```bash
-nixpacks.toml
-```
-
-inside frontend folder.
-
-Add:
-
-```toml
-[phases.setup]
-nixPkgs = ['nodejs']
-
-[start]
-cmd = 'npx serve .'
-```
-
----
+Deploy the site.
 
 ## Step 5
-
-Deploy 🚀
+Update API URL inside script.js with Railway backend URL.
 
 ---
 
