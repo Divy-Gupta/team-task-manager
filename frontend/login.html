@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-body">
+
+<div class="auth-container">
+
+  <h1>Login</h1>
+
+  <form id="loginForm">
+
+    <input
+    type="email"
+    id="email"
+    placeholder="Enter Email">
+
+    <input
+    type="password"
+    id="password"
+    placeholder="Enter Password">
+
+    <button type="submit">
+      Login
+    </button>
+
+  </form>
+
+  <p>
+    Don't have an account?
+
+    <a href="signup.html">
+      Create Account
+    </a>
+  </p>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+document.getElementById("loginForm")
+.addEventListener("submit", async(e)=>{
+
+    e.preventDefault();
+
+    const email =
+    document.getElementById("email").value;
+
+    const password =
+    document.getElementById("password").value;
+
+    await loginUser(email, password);
+
+});
+
+</script>
+
+</body>
+</html>

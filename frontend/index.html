@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Task Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOGIN SECTION -->
+
+<div class="auth-body" id="loginSection">
+
+    <div class="auth-container">
+
+        <h1>Login</h1>
+
+        <form id="loginForm">
+
+            <input
+            type="email"
+            id="email"
+            placeholder="Enter Email"
+            required>
+
+            <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            required>
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <p>
+            Don't have an account?
+            <a href="signup.html">
+                Create Account
+            </a>
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" style="display:none;">
+
+    <div class="sidebar">
+
+        <h2>Task Manager</h2>
+
+        <ul>
+            <li>Dashboard</li>
+            <li>Projects</li>
+            <li>Tasks</li>
+
+            <li onclick="logoutUser()">
+                Logout
+            </li>
+        </ul>
+
+    </div>
+
+
+    <div class="main">
+
+        <div class="topbar">
+<h1>
+
+Dashboard
+
+<span id="loggedUser"></span>
+
+</h1>
+
+            <div>
+
+                <button id="createProjectBtn">
+                    + Create Project
+                </button>
+
+                <button id="createTaskBtn">
+                    + Create Task
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Tasks</h3>
+                <p id="totalTasks">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Completed</h3>
+                <p id="completedTasks">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Pending</h3>
+                <p id="pendingTasks">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Overdue</h3>
+                <p id="overdueTasks">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Projects</h3>
+                <p id="totalProjects">0</p>
+            </div>
+
+    <div class="card">
+        <h3>Active Projects</h3>
+        <p id="activeProjects">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Pending Projects</h3>
+        <p id="pendingProjects">0</p>
+    </div>
+
+    <div class="card">
+        <h3>Completed Projects</h3>
+        <p id="completedProjects">0</p>
+    </div>
+
+</div>
+
+
+        <div class="project-section">
+
+            <div class="project-header">
+
+                <h2>Projects</h2>
+
+            </div>
+
+            <div
+            class="projects"
+            id="projectsContainer">
+
+            </div>
+
+        </div>
+
+
+        <div class="table-section">
+
+            <h2>Team Members</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                       <th>User ID</th>
+<th>Name</th>
+<th>Role</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+    <tr>
+        <td>1</td>
+        <td>Divy Gupta</td>
+        <td>Admin</td>
+    </tr>
+
+    <tr>
+        <td>2</td>
+        <td>Rahul</td>
+        <td>Member</td>
+    </tr>
+
+    <tr>
+        <td>3</td>
+        <td>Aman</td>
+        <td>Member</td>
+    </tr>
+
+</tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="table-section">
+
+            <h2>Recent Tasks</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Task</th>
+                        <th>Assigned To</th>
+                        <th>Status</th>
+                        <th>Project</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="taskTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TASK MODAL -->
+
+<div class="modal" id="taskModal">
+
+    <div class="modal-content">
+
+        <span class="close">&times;</span>
+
+        <h2>Create Task</h2>
+
+        <form id="taskForm">
+
+            <input
+            type="text"
+            id="taskTitle"
+            placeholder="Task Title"
+            required>
+
+            <select id="taskStatus">
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+            </select>
+
+            <input
+            type="number"
+            id="assignedTo"
+            placeholder="Assigned User ID"
+            required>
+
+            <input
+            type="number"
+            id="projectId"
+            placeholder="Project ID"
+            required>
+
+            <button type="submit">
+                Create Task
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- PROJECT MODAL -->
+
+<div class="modal" id="projectModal">
+
+    <div class="modal-content">
+
+        <span class="closeProject">&times;</span>
+
+        <h2>Create Project</h2>
+
+        <form id="projectForm">
+
+            <input
+            type="text"
+            id="projectTitle"
+            placeholder="Project Title"
+            required>
+
+            <input
+            type="text"
+            id="projectDescription"
+            placeholder="Project Description"
+            required>
+
+            <select id="projectStatus">
+
+    <option>Active</option>
+
+    <option>Pending</option>
+
+    <option>Completed</option>
+
+</select>
+
+            <button type="submit">
+                Create Project
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const token =
+localStorage.getItem("token");
+
+if(token){
+
+    document.getElementById("loginSection")
+    .style.display = "none";
+
+    document.getElementById("dashboard")
+    .style.display = "flex";
+
+}else{
+
+    document.getElementById("loginSection")
+    .style.display = "flex";
+
+    document.getElementById("dashboard")
+    .style.display = "none";
+
+}
+
+</script>
+
+<script>
+
+const role =
+localStorage.getItem("role");
+
+if(role == "member"){
+
+    document.addEventListener(
+    "DOMContentLoaded",()=>{
+
+        const projectBtn =
+        document.getElementById(
+        "createProjectBtn"
+        );
+
+        const taskBtn =
+        document.getElementById(
+        "createTaskBtn"
+        );
+
+        if(projectBtn){
+
+            projectBtn.style.display =
+            "none";
+
+        }
+
+        if(taskBtn){
+
+            taskBtn.style.display =
+            "none";
+
+        }
+
+    });
+
+}
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>
